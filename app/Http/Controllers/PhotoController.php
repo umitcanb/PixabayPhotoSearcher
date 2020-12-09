@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
+
 
 class PhotoController extends Controller
 {
@@ -15,7 +17,12 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        $response = Http::get('https://pixabay.com/api', [
+            'key' => "19444033-331b1230e707e108aa550352a",
+            'page' => 1,
+        ]);
+
+        return $response;
     }
 
     /**
