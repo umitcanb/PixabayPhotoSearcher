@@ -15,7 +15,9 @@ use App\Http\Controllers\PhotoController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('photos.search');
 });
 
 Route::get('/photos', [PhotoController::class, 'index']);
+
+Route::post('photos.api', [PhotoController::class, 'getPhotos'])->name('photo.getPhotos');

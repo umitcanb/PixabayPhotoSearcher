@@ -15,11 +15,12 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getPhotos(Request $request)
     {
         $response = Http::get('https://pixabay.com/api', [
             'key' => "19444033-331b1230e707e108aa550352a",
             'page' => 1,
+            'q' => $request->search,
         ]);
 
         return $response;
