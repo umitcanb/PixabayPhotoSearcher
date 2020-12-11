@@ -15,9 +15,15 @@ use App\Http\Controllers\PhotoController;
 */
 
 Route::get('/', function () {
-    return view('photos.search');
+    return view('photo.search');
 });
 
-Route::get('/photos', [PhotoController::class, 'index']);
+//Route::get('/photos')->name('photo.search');
 
-Route::post('photos.api', [PhotoController::class, 'getPhotos'])->name('photo.getPhotos');
+Route::post('photo.results', [PhotoController::class, 'getPhotos'])->name('photo.getPhotos');
+
+//Route::get('photo.results')->name('photo.results');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

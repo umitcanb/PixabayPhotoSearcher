@@ -23,8 +23,19 @@ class PhotoController extends Controller
             'q' => $request->search,
         ]);
 
-        return $response;
+        //return $response;
+
+        //$responseObject = json_decode($response);
+
+
+        //return $responseObject["hits"][1]["pageURL"];
+        //var_dump($responseObject->hits[0]->pageURL);
+        //$arrayOfObjects = $responseObject->hits;
+
+        return view('photo.results', ['response' => $response]);
+        //return view('photo.index', $arrayOfObjects);
     }
+
 
     /**
      * Show the form for creating a new resource.
