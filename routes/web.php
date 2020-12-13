@@ -27,6 +27,8 @@ Route::post('photo.results', [PhotoController::class, 'getPhotos'])->name('photo
 
 Route::post('/image/save', [PhotoController::class, 'saveImage']); 
 
+Route::get('saved', [PhotoController::class, 'getSavedPhotos'])->name('photo.saved');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

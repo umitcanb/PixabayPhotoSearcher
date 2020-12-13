@@ -6,7 +6,7 @@
                 <img class="card-img-top" :src="item.webformatURL" alt="Card image cap">
                 <div class="card-body">
                     {{item.pageURL}}
-                    <button @click="download(item)" class="btn btn-primary">Save</button>
+                    <button @click="save(item)" class="btn btn-primary">Save</button>
                 </div>
 
             </div>
@@ -27,7 +27,7 @@
             console.log('Component mounted.')
         },
         methods: {
-            download(item){
+            save(item){
                 var data = {highResolution: item.pageURL, lowResolution: item.previewURL}
                 axios.post("/image/save", data);
             }
