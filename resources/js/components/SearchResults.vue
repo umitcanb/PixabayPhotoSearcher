@@ -5,7 +5,6 @@
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" :src="item.webformatURL" alt="Card image cap">
                 <div class="card-body">
-                    {{item.pageURL}}
                     <button @click="save(item)" class="btn btn-primary">Save</button>
                 </div>
 

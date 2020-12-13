@@ -32,7 +32,8 @@ class PhotoController extends Controller
     public function saveImage(Request $request){
 
   
-        $url = "https://i.stack.imgur.com/koFpQ.png";
+        //$url = "https://i.stack.imgur.com/koFpQ.png";
+        $url = $request->highResolution;
         $content = file_get_contents($url);
         $name = substr($url, strrpos($url, '/') + 1);
         Storage::put($name, $content);
