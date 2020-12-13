@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PhotoController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,8 @@ Route::get('/', function () {
 Route::post('photo.results', [PhotoController::class, 'getPhotos'])->name('photo.getPhotos');
 
 //Route::get('photo.results')->name('photo.results');
+
+Route::post('/image/save', [PhotoController::class, 'saveImage']); 
 
 Auth::routes();
 

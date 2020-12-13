@@ -6,6 +6,8 @@ use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
+use Storage;
+
 
 
 class PhotoController extends Controller
@@ -23,17 +25,21 @@ class PhotoController extends Controller
             'q' => $request->search,
         ]);
 
-        //return $response;
-
-        //$responseObject = json_decode($response);
-
-
-        //return $responseObject["hits"][1]["pageURL"];
-        //var_dump($responseObject->hits[0]->pageURL);
-        //$arrayOfObjects = $responseObject->hits;
-
         return view('photo.results', ['response' => $response]);
-        //return view('photo.index', $arrayOfObjects);
+
+    }
+
+    public function saveImage(Request $request){
+
+  
+        $url = $request->highResolution;
+        $contents = file_get_contents($url);
+        $name = substr($url, strrpos($url, '/') + 1);
+        Storage::put($name, $contents);
+
+        return;
+
+        
     }
 
 
