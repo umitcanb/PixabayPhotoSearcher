@@ -4,9 +4,11 @@
         <div v-bind:key="i" v-for="(item, i) in response.hits">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" :src="item.webformatURL" alt="Card image cap">
+                
                 <div class="card-body">
                     <button @click="save(item)" class="btn btn-primary">Save</button>
                 </div>
+              
 
             </div>
         </div>
@@ -23,12 +25,15 @@
             return {};
         },
         mounted() {
-            console.log('Component mounted.')
+            console.log('Fancy component mounted!')
+
         },
         methods: {
             save(item){
-                var data = {highResolution: item.pageURL, lowResolution: item.previewURL}
-                axios.post("/image/save", data);
+                console.log(item);
+                var data = {lowResolution: item.previewURL};
+                axios.post("/image/save", data).catch(console.error);
+                
             }
         }
     }

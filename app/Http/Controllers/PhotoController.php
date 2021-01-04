@@ -6,17 +6,15 @@ use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
-use Storage;
+//use Storage;
+use Illuminate\Support\Facades\Storage;
+
 
 
 
 class PhotoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function getPhotos(Request $request)
     {
         $response = Http::get('https://pixabay.com/api', [
@@ -31,12 +29,13 @@ class PhotoController extends Controller
 
     public function saveImage(Request $request){
 
-  
-        //$url = "https://i.stack.imgur.com/koFpQ.png";
-        $url = $request->highResolution;
+        $url = $request->lowResolution;
         $content = file_get_contents($url);
         $name = substr($url, strrpos($url, '/') + 1);
         Storage::put($name, $content);
+        //$content->storeAs('storage/app/public', $name, ['disk'=>'public']);
+        //Storage::disk('local')->put($name, $content);
+
 
         $photo = Photo::create(
             [
@@ -56,7 +55,7 @@ class PhotoController extends Controller
         foreach ($photos as &$photo){
 
             //$url = asset('storage/app/'. $photo->file_name); 
-            $url = Storage::url($photo->file_name);
+            $url = asset(Storage::url($photo->file_name));
             array_push($arrayOfUrls, $url);
         }
         

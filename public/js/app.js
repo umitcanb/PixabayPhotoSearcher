@@ -1924,9 +1924,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["photos"],
   data: function data() {
@@ -1966,21 +1963,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["response"],
   data: function data() {
     return {};
   },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log('Fancy component mounted!');
   },
   methods: {
     save: function save(item) {
+      console.log(item);
       var data = {
-        highResolution: item.pageURL,
         lowResolution: item.previewURL
       };
-      axios.post("/image/save", data);
+      axios.post("/image/save", data)["catch"](console.error);
     }
   }
 });
@@ -37588,13 +37587,7 @@ var render = function() {
             _c("img", {
               staticClass: "card-img-top",
               attrs: { src: photo, alt: "Card image cap" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    " + _vm._s(photo) + "\n                "
-              )
-            ])
+            })
           ])
         ])
       })

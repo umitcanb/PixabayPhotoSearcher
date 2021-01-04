@@ -4,9 +4,6 @@
             <div  class="d-flex flex-wrap" v-bind:key="i" v-for="(photo, i) in photos">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" :src="photo" alt="Card image cap">
-                    <div class="card-body">
-                        {{photo}}
-                    </div>
 
                 </div>
             </div>
