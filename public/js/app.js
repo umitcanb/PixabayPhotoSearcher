@@ -1977,7 +1977,7 @@ __webpack_require__.r(__webpack_exports__);
     save: function save(item) {
       console.log(item);
       var data = {
-        lowResolution: item.previewURL
+        lowResolution: item.webformatURL
       };
       axios.post("/image/save", data)["catch"](console.error);
     }
