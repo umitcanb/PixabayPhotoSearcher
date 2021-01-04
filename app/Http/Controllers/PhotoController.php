@@ -44,6 +44,7 @@ class PhotoController extends Controller
         );
 
         return redirect()->route('photo.saved');
+      
     }
 
     public function getSavedPhotos()

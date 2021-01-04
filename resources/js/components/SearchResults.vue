@@ -32,7 +32,9 @@
             save(item){
                 console.log(item);
                 var data = {lowResolution: item.webformatURL};
-                axios.post("/image/save", data).catch(console.error);
+                axios.post("/image/save", data).then(response => {
+                window.location.replace("/saved");
+            });
                 
             }
         }

@@ -1979,7 +1979,9 @@ __webpack_require__.r(__webpack_exports__);
       var data = {
         lowResolution: item.webformatURL
       };
-      axios.post("/image/save", data)["catch"](console.error);
+      axios.post("/image/save", data).then(function (response) {
+        window.location.replace("/saved");
+      });
     }
   }
 });
