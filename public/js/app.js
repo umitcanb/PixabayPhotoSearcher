@@ -1924,6 +1924,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["photos"],
   data: function data() {
@@ -1931,6 +1934,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  methods: {
+    unsave: function unsave(photo) {
+      console.log(photo);
+      var data = {
+        url: photo
+      };
+      axios.post("/image/unsave", data).then(function (response) {
+        window.location.replace("/saved");
+      });
+    }
   }
 });
 
@@ -37589,7 +37603,22 @@ var render = function() {
             _c("img", {
               staticClass: "card-img-top",
               attrs: { src: photo, alt: "Card image cap" }
-            })
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  on: {
+                    click: function($event) {
+                      return _vm.unsave(photo)
+                    }
+                  }
+                },
+                [_vm._v("Unsave")]
+              )
+            ])
           ])
         ])
       })

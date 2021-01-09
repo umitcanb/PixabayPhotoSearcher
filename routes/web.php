@@ -26,6 +26,8 @@ Route::post('photo.results', [PhotoController::class, 'getPhotos'])->name('photo
 //Route::get('photo.results')->name('photo.results');
 
 Route::post('/image/save', [PhotoController::class, 'saveImage']); 
+Route::post('/image/unsave', [PhotoController::class, 'unsaveImage']); 
+
 
 Route::get('/saved', [PhotoController::class, 'getSavedPhotos'])->name('photo.saved');
 

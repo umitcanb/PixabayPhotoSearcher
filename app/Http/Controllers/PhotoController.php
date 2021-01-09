@@ -68,6 +68,17 @@ class PhotoController extends Controller
         return view('photo.saved', ['photos' => json_encode($arrayOfUrls)]);
     }
 
+    public function unsaveImage(Request $request){
+
+        $url = $request->url;
+        $name = substr($url, strrpos($url, '/', -1) + 1);
+
+        $photo = Photo::where('file_name', $name)->first();
+
+        $photo->delete(); 
+        Storage::delete($name);
+    }
+
   
    
 
