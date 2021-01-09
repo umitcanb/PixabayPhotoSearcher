@@ -30,14 +30,19 @@ class PhotoController extends Controller
     public function saveImage(Request $request){
 
         $url = $request->lowResolution;
+        
         $content = file_get_contents($url);
-        $name = substr($url, strrpos($url, '/') + 1);
+        
+        $photo = Photo::create();
+
+        $name = $photo->id . "." . substr($url, strrpos($url, '.', -1) + 1);
+        //$name = substr($url, strrpos($url, '/') + 1);
         Storage::put($name, $content);
         //$content->storeAs('storage/app/public', $name, ['disk'=>'public']);
         //Storage::disk('local')->put($name, $content);
 
 
-        $photo = Photo::create(
+        $photo->update(
             [
                 'file_name' => $name,
             ]
