@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 //Route::get('/photos')->name('photo.search');
 
-Route::post('photo.results', [PhotoController::class, 'getPhotos'])->name('photo.getPhotos');
+Route::post('results', [PhotoController::class, 'getPhotos'])->name('photo.getPhotos');
 
 //Route::get('photo.results')->name('photo.results');
 
