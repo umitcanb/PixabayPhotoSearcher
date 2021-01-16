@@ -21,7 +21,7 @@ class PhotoController extends Controller
     public function getPhotos(Request $request) {
         
         if (Cache::has($request->search)) {
-            $cacheResponse = json_encode(cache($request->search)); //burada bir sıkıntı var
+            $cacheResponse = json_encode(cache($request->search)); 
 
             return view('photo.results', ['response' => $cacheResponse]);
         } 
