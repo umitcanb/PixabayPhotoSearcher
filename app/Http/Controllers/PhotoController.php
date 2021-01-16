@@ -8,22 +8,45 @@ use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 //use Storage;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Contracts\Cache\Factory;
+use Illuminate\Contracts\Cache\Repository;
+
 
 
 
 
 class PhotoController extends Controller
 {
-   
-    public function getPhotos(Request $request)
+    public function getPhotos(Request $request) {
+        
+        if (Cache::has($request->search)) {
+            $cacheResponse = json_encode(cache($request->search)); //burada bir sıkıntı var
+
+            return view('photo.results', ['response' => $cacheResponse]);
+        } 
+        
+       
+        $response = self::getResponse($request);
+
+        return view('photo.results', ['response' => $response]);
+        
+    }
+
+    public static function getResponse(Request $request)
     {
+        
         $response = Http::get('https://pixabay.com/api', [
             'key' => "19444033-331b1230e707e108aa550352a",
             'page' => 1,
             'q' => $request->search,
         ]);
 
-        return view('photo.results', ['response' => $response]);
+
+        Cache::put($request->search, json_decode($response), $seconds = 216000);
+        
+       
+        return $response;
 
     }
 
